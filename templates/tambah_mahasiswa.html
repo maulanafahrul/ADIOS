@@ -1,0 +1,53 @@
+{% extends '/layout/main.html' %}
+{% set title = 'Tambah Data' %}
+{% set page_active = 'mahasiswa' %}
+
+
+
+{% block _content %}
+>
+<div class="row justify-content-center ">
+    <div class="col-lg-6">
+        <h3 class="text-center">Tambah Mahasiswa</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="mb-1">
+                <label for="nama_lengkap" class="form-label">Nama lengkap</label>
+                <input type="text" name="nama_lengkap" class="form-control" id="nama_lengkap"
+                    placeholder="Masukan Nama Lengkap" required>
+            </div>
+            <div class="mb-1">
+                <label for="nim" class="form-label">NIM</label>
+                <input type="number" name="nim" class="form-control" id="nim" placeholder="Masukan Nama NIM" required>
+            </div>
+            <div class="mb-1">
+                <label for="jurusan" class="form-label">Jurusan</label>
+                <select class="form-select" aria-label="Default select example" id="jurusan" name="jurusan">
+                    <option value="">--Pilih Satu--</option>
+                    {% for j in jurusan %}
+                    <option value="{{ j.jurusan }}">{{ j.jurusan }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-1">
+                <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
+                <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir"
+                    placeholder="Masukan Nama Tanggal Lahir" required>
+            </div>
+            <div class="mb-1">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Masukan Nama Email"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="foto" class="form-label">Masukan foto</label>
+                <input class="form-control" type="file" id="foto" name="foto">
+            </div>
+
+            <div class="mb-1">
+                <button type="submit" class="btn btn-primary">submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

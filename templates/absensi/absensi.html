@@ -1,0 +1,122 @@
+{% extends '/layout/main.html' %}
+{% set title = 'Jadwal Kuliah' %}
+{% set page_active = 'mata kuliah' %}
+
+{% block _style %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
+{% block _content %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Daftar Jadwal Kuliah</h2>
+    </div>
+</div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#jadwal_matkul">
+    Tambah Jadwal
+</button>
+<table id="mytable" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">Nama Mata Kuliah</th>
+            <th scope="col">Hari</th>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Tempat</th>
+            <th scope="col">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <td></td>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="jadwal_matkul" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Jadwal</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    <div class="mb-1">
+                        <label for="mata_kuliah" class="form-label">Mata Kuliah</label>
+                        <input type="text" name="mata_kuliah" class="form-control" id="mata_kuliah"
+                            placeholder="Masukan Mata Kuliah" required>
+                    </div>
+                    <div class="mb-1">
+                        <label for="hari" class="form-label">Hari</label>
+                        <input type="text" name="hari" class="form-control" id="hari" placeholder="Masukan Hari"
+                            required>
+                    </div>
+                    <div class="mb-1">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" name="tanggal" class="form-control" id="tanggal"
+                            placeholder="Masukan Tanggal" required>
+                    </div>
+                    <div class="mb-1">
+                        <label for="tempat" class="form-label">Lokasi</label>
+                        <input type="text" name="tempat" class="form-control" id="tempat" placeholder="Masukan Lokasi"
+                            required>
+                    </div>
+                    <div class="mb-1">
+                        <label for="mahasiswa" class="form-label">List Mahasiswa</label>
+                        <select class="" name="mahasiswa[]" multiple="multiple" id="mahasiswa">
+                            <option disabled>--Pilih Satu--</option>
+                            {% for dt in data %}
+                            <option value="{{ dt.nama_lengkap }}">{{ dt.nama_lengkap }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block _script %}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#mytable').DataTable();
+    });
+
+    $(document).ready(function() {
+    $('.mahasiswa').select2();
+})
+
+
+
+    function deleteJurusan(uid) {
+        let hapus = confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')
+        if (hapus) {
+            // console.log('oke')
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('jurusanapp.delete_jurusan') }}",
+                data: { 'uid': uid },
+                success: function () {
+                    location.reload()
+                }
+
+            })
+        }
+    }
+</script>
+{% endblock %}

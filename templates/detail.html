@@ -1,0 +1,21 @@
+{% extends '/layout/main.html' %}
+{% set title = 'Detail Mahasiswa' %}
+{% set page_active = 'mahasiswa' %}
+
+{% block _content %}
+
+<a href="/mahasiswa" class="btn btn-primary mt-3">Kembali</a>
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>Mahasiswa</h1>
+    </div>
+
+    <ul class="list-group list-group-flush ">
+        <li class="list-group-item"> Nama lengkap :{{ data.nama_lengkap }}</li>
+        <li class="list-group-item"> NIM :{{ data.nim }}</li>
+        <li class="list-group-item"> Jurusan :{{ data.jurusan }}</li>
+        <li class="list-group-item"> Email :{{ data.email }}</li>
+    </ul>
+</div>
+
+{% endblock %}

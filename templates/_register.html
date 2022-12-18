@@ -1,0 +1,78 @@
+{% extends '/layout/main.html' %}
+{% set title = 'Register' %}
+{% set page_active = 'login' %}
+
+
+{% block _style %}
+<style>
+
+
+    .content {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+{% endblock %}
+
+{% block _content %}
+<div class="container text-center content">
+    <main class="form-signin w-100 m-auto">
+        <form action="" method="post">
+            <h1 class="h3 mb-3 fw-normal">Please Register</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" id="nama_lengkap" placeholder="Your name" name="nama_lengkap">
+                <label for="nama_lengkap">Nama Lengkap</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+                <label for="email">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password_1" placeholder="Confirm Password" name="password_1">
+                <label for="password_1">Confirm Password</label>
+            </div>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me" required> I accept <a href=""><span>Privasi</span></a>
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+            <div class="mb-3 ">
+                <span>Sudah mempunyai akun?</span><a href="/login" class="text-decoration-none">Login</a>
+            </div>
+        </form>
+    </main>
+</div>
+{% endblock %}

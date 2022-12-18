@@ -1,0 +1,28 @@
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+        <div class="nav">
+            <div class="sb-sidenav-menu-heading">Core</div>
+            <a class="nav-link {% if page_active == 'index' %} active {% endif %}" href="/">
+                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                Dashboard
+            </a>
+            <a class="nav-link {% if page_active == 'mahasiswa' %} active {% endif %}" href="{{ url_for('mhsapp.mahasiswa') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                Daftar Mahasiswa
+            </a>
+            <a class="nav-link {% if page_active == 'manajemen jurusan' %} active {% endif %}" href="{{ url_for('jurusanapp.jurusan') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Daftar Jurusan
+            </a>
+            <a class="nav-link {% if page_active == 'mata kuliah' %} active {% endif %}" href="{{ url_for('absenapp.absensi') }}">
+                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                Absensi
+            </a>
+            
+        </div>
+    </div>
+    <div class="sb-sidenav-footer">
+        <div class="small">Logged in as:</div>
+        {{ session.user.nama_lengkap }}
+    </div>
+</nav>
